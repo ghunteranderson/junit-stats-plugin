@@ -37,8 +37,7 @@ public class SampleSet<T extends TestSet> {
 		
 		double sumOfSquaredDeviations = durations
 				.stream()
-				.map(x -> Math.pow(x-(double)averageDuration, 2))
-				.reduce((a, b) -> a+b).orElse(0.0);
+				.collect(Collectors.summingDouble(duration -> Math.pow(duration - (double) averageDuration, 2)));
 		
 		this.standardDeviation = (long)Math.sqrt(sumOfSquaredDeviations / durations.size());
 	}
